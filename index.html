@@ -114,7 +114,7 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
 .sim-cab i svg { width: 22px; height: 22px; fill: #ffffff }
 .sim-cab > div { flex: 1; min-width: 0 }
 .sim-cab b { display: block; color: var(--wa-texto); font-size: 15px; line-height: 20px; font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis }
-.sim-cab small { display: block; color: var(--wa-hora); font-size: 13px; line-height: 18px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis }
+.sim-cab small { display: block; color: var(--wa-icone); font-size: 13px; line-height: 18px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis }
 .sim-cab .icones { display: flex; gap: 18px; flex: none }
 .sim-cab .icones svg { width: 20px; height: 20px; fill: none; stroke: var(--wa-icone); stroke-width: 2; stroke-linecap: round; stroke-linejoin: round }
 .dia-chip { align-self: center; background: #ffffff; color: var(--wa-icone); font-size: 12px; line-height: 16px; padding: 5px 12px; border-radius: 8px; box-shadow: 0 1px 0.5px rgba(11, 20, 26, 0.13); margin-bottom: 2px }
@@ -211,11 +211,16 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
 .troca .sem svg { stroke: #8f9bab }
 .troca .com svg { stroke: var(--amber) }
 
+.abas { display: none }
+
+/* barra fixa de ação no celular */
+.barra-cta { display: none }
+
 /* blocos */
 .bento { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 16px }
 .bloco { background: var(--bg); border-radius: 16px; padding: 28px; display: grid; gap: 12px; align-content: start; box-shadow: var(--sh-1); min-width: 0;
   transition: transform 320ms var(--mola), box-shadow 320ms var(--ease) }
-.bloco:hover { transform: translateY(-4px); box-shadow: var(--sh-2) }
+@media (hover: hover) { .bloco:hover { transform: translateY(-4px); box-shadow: var(--sh-2) } }
 .bloco h3 { font-size: 20px; line-height: 28px; font-weight: 600 }
 .b-rdo { grid-column: span 4; grid-row: span 2; grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr); gap: 28px; align-items: start }
 .b-rdo-txt { display: grid; gap: 12px }
@@ -236,7 +241,7 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
 .privado div { background: var(--bg); border-radius: 8px; padding: 6px 10px }
 .rdo { background: #ffffff; color: #1d2733; border-radius: 4px; padding: 18px; font-size: 12px; line-height: 16px; box-shadow: 0 1px 2px rgba(13, 42, 69, 0.08), 0 16px 32px -16px rgba(13, 42, 69, 0.3); transform: rotate(1.2deg); min-width: 0;
   transition: transform 340ms var(--mola), box-shadow 340ms var(--ease) }
-.b-rdo:hover .rdo { transform: rotate(0deg) translateY(-6px) scale(1.02); box-shadow: 0 2px 4px rgba(13, 42, 69, 0.08), 0 28px 48px -20px rgba(13, 42, 69, 0.4) }
+@media (hover: hover) { .b-rdo:hover .rdo { transform: rotate(0deg) translateY(-6px) scale(1.02); box-shadow: 0 2px 4px rgba(13, 42, 69, 0.08), 0 28px 48px -20px rgba(13, 42, 69, 0.4) } }
 .rdo-t { display: flex; justify-content: space-between; gap: 12px; border-bottom: 2px solid #0d2a45; padding-bottom: 6px }
 .rdo-t b { color: #0d2a45; font-size: 12px; line-height: 16px }
 .rdo-t small { display: block; color: #56626f; font-size: 11px }
@@ -250,6 +255,7 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
 .rdo td { padding: 3px 6px; border-bottom: 1px solid #e8ecf0 }
 .rdo-a { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 18px }
 .rdo-a div { border-top: 1px solid #1d2733; padding-top: 3px; text-align: center; color: #56626f }
+.dica-deslize { display: none }
 .nota { margin-top: 16px; font-size: 13px; line-height: 18px; color: var(--muted) }
 
 /* passos */
@@ -335,6 +341,57 @@ footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; g
   .troca > div { padding: 24px }
   .garantias li { padding: 16px 18px }
 }
+@media (max-width: 720px) {
+  /* simulador: painel compacto em cima, chat e botões logo abaixo, tudo numa tela */
+  .sim { gap: 8px; padding: 6px }
+  .painel { order: -1; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 6px }
+  .painel h2 { display: none }
+  .met { padding: 6px 10px; gap: 0 }
+  #m-gastos { grid-column: 1 / -1; display: flex; align-items: baseline; justify-content: space-between; padding: 8px 12px }
+  .met span { font-size: 12px; line-height: 16px }
+  .met strong { font-size: 18px; line-height: 24px }
+  .met small { display: none }
+  .rdo-pronto { grid-column: 1 / -1; padding: 8px 12px; font-size: 12px; line-height: 16px }
+  .rdo-pronto br { display: none }
+  .rdo-pronto b { margin-right: 4px }
+  .msgs { height: 300px; padding: 12px 10px }
+  .sim-cab { padding: 8px 12px } .sim-cab .icones { gap: 14px }
+  .acoes { padding: 8px 10px 10px }
+  .acao { min-height: 44px; padding: 6px 10px; gap: 8px }
+  .sim-rodape { padding: 0 6px 4px }
+
+  /* comparação em abas */
+  .abas { display: grid; grid-template-columns: 1fr 1fr; gap: 4px; padding: 4px; margin-bottom: 16px; background: var(--soft-2); border-radius: 16px }
+  .abas button { min-height: 44px; border: 0; border-radius: 12px; background: transparent; font: 600 15px/20px var(--font); color: var(--muted); cursor: pointer; transition: background-color 200ms var(--ease), color 200ms var(--ease), box-shadow 200ms var(--ease) }
+  .abas button[aria-selected="true"] { background: var(--bg); color: var(--ink); box-shadow: var(--sh-1) }
+  .troca .sem, .troca .com { display: none }
+  .troca .ativo { display: grid; animation: abre 320ms var(--mola) both }
+  .troca > div > h3 { display: none }
+
+  /* blocos em carrossel de deslizar */
+  .bento { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; gap: 12px; margin-inline: calc(-1 * max(20px, env(safe-area-inset-left, 0px))); padding: 4px max(20px, env(safe-area-inset-left, 0px)) 16px; scrollbar-width: none }
+  .bento::-webkit-scrollbar { display: none }
+  .bento > .bloco { flex: 0 0 82%; scroll-snap-align: center; padding: 20px }
+  .b-rdo { flex-basis: 88% }
+  .dica-deslize { display: block }
+
+  /* barra fixa embaixo, aparece depois do topo e some no contato */
+  .barra-cta { display: flex; position: fixed; z-index: 25; left: 0; right: 0; bottom: 0; align-items: center; justify-content: space-between; gap: 12px;
+    padding: 10px max(16px, env(safe-area-inset-right, 0px)) calc(10px + env(safe-area-inset-bottom, 0px)) max(16px, env(safe-area-inset-left, 0px));
+    background: rgba(255, 255, 255, 0.96); box-shadow: 0 -1px 0 rgba(13, 42, 69, 0.06), 0 -8px 24px -12px rgba(13, 42, 69, 0.25);
+    transform: translateY(110%); transition: transform 320ms var(--mola) }
+  .barra-cta.visivel { transform: none }
+  .barra-cta span { font-size: 14px; line-height: 20px; color: var(--text) }
+  .barra-cta b { color: var(--ink) }
+  .barra-cta .btn { min-height: 44px; padding: 10px 18px }
+  footer { padding-bottom: calc(96px + env(safe-area-inset-bottom, 0px)) }
+}
+@media (max-width: 380px) {
+  .hero h1 { font-size: 33px; line-height: 38px }
+  .met strong { font-size: 16px }
+  .met span { font-size: 11px }
+  .acao { font-size: 13px }
+}
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important }
 }
@@ -403,8 +460,12 @@ footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; g
         <h2>A obra já conversa no grupo. Falta alguém organizar.</h2>
         <p>Ninguém no canteiro tem tempo de lançar planilha. O Tomé trabalha onde a equipe já está.</p>
       </div>
+      <div class="abas" role="tablist" aria-label="Comparação">
+        <button type="button" role="tab" id="aba-sem" aria-controls="lado-sem" aria-selected="false">Sem o Tomé</button>
+        <button type="button" role="tab" id="aba-com" aria-controls="lado-com" aria-selected="true">Com o Tomé</button>
+      </div>
       <div class="troca">
-        <div class="sem">
+        <div class="sem" id="lado-sem" role="tabpanel" aria-labelledby="aba-sem">
           <h3>Sem o Tomé</h3>
           <ul>
             <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg><span>Cupom de material esquecido no bolso da calça</span></li>
@@ -414,7 +475,7 @@ footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; g
             <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg><span>Etapa estourada descoberta só no fim do mês</span></li>
           </ul>
         </div>
-        <div class="com escuro">
+        <div class="com escuro" id="lado-com" role="tabpanel" aria-labelledby="aba-com">
           <h3>Com o Tomé no grupo</h3>
           <ul>
             <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>Cada compra vira um lançamento numerado, e ele lembra do cupom que faltar</span></li>
@@ -487,7 +548,7 @@ footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; g
           <p>Salário nunca aparece no grupo.</p>
         </div>
       </div>
-      <p class="nota">Nomes e valores dos blocos são exemplos.</p>
+      <p class="nota">Nomes e valores dos blocos são exemplos.<span class="dica-deslize"> Deslize para o lado para ver todos.</span></p>
     </div>
   </section>
 
@@ -562,6 +623,11 @@ footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; g
   </section>
 </main>
 
+<div class="barra-cta" id="barra-cta" aria-hidden="true">
+  <span><b>Tomé</b> no grupo da sua obra</span>
+  <a class="btn btn-pri" href="#contato" tabindex="-1">Quero testar</a>
+</div>
+
 <footer>
   <div class="wrap">
     <span>© 2026 Tomé, assessor de obra. Fortaleza, CE.</span>
@@ -593,6 +659,37 @@ const WHATSAPP = '';
     const selecionar = () => { const r = document.createRange(); r.selectNodeContents(document.getElementById('num-whats')); const s = getSelection(); s.removeAllRanges(); s.addRange(r); copiar.textContent = 'Número selecionado'; };
     try { navigator.clipboard.writeText(t).then(feito, selecionar); } catch (e) { selecionar(); }
   });
+
+  // ---------- abas da comparação (celular) ----------
+  const abas = [...document.querySelectorAll('.abas [role="tab"]')];
+  function abrir(aba) {
+    abas.forEach(a => {
+      const sel = a === aba;
+      a.setAttribute('aria-selected', sel);
+      a.tabIndex = sel ? 0 : -1;
+      document.getElementById(a.getAttribute('aria-controls')).classList.toggle('ativo', sel);
+    });
+  }
+  abas.forEach(a => a.addEventListener('click', () => abrir(a)));
+  abas.forEach((a, i) => a.addEventListener('keydown', e => {
+    if (e.key !== 'ArrowLeft' && e.key !== 'ArrowRight') return;
+    const outra = abas[(i + 1) % abas.length]; abrir(outra); outra.focus();
+  }));
+  abrir(document.getElementById('aba-com'));
+
+  // ---------- barra fixa de ação no celular ----------
+  const barra = document.getElementById('barra-cta');
+  let topoFora = false, contatoDentro = false;
+  const atualizaBarra = () => {
+    const ver = topoFora && !contatoDentro;
+    barra.classList.toggle('visivel', ver);
+    barra.setAttribute('aria-hidden', !ver);
+    barra.querySelector('a').tabIndex = ver ? 0 : -1;
+  };
+  new IntersectionObserver(([e]) => { topoFora = !e.isIntersecting && e.boundingClientRect.top < 0; atualizaBarra(); })
+    .observe(document.getElementById('cta-topo'));
+  new IntersectionObserver(([e]) => { contatoDentro = e.isIntersecting; atualizaBarra(); })
+    .observe(document.getElementById('contato'));
 
   // ---------- borda do topo ao rolar ----------
   const topo = document.getElementById('topo');
