@@ -1,0 +1,96 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640" width="640" height="640">
+  <defs>
+    <radialGradient id="bg" cx="50%" cy="40%" r="70%">
+      <stop offset="0" stop-color="#1f4e79"/>
+      <stop offset="1" stop-color="#0d2a45"/>
+    </radialGradient>
+    <linearGradient id="hat" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#ffd23f"/>
+      <stop offset="1" stop-color="#f2a900"/>
+    </linearGradient>
+    <linearGradient id="skin" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#c98b5e"/>
+      <stop offset="1" stop-color="#b3764b"/>
+    </linearGradient>
+    <radialGradient id="lens" cx="40%" cy="35%" r="70%">
+      <stop offset="0" stop-color="#ffffff" stop-opacity="0.55"/>
+      <stop offset="1" stop-color="#cfe8ff" stop-opacity="0.15"/>
+    </radialGradient>
+  </defs>
+
+  <!-- fundo -->
+  <rect width="640" height="640" fill="url(#bg)"/>
+  <circle cx="320" cy="320" r="300" fill="none" stroke="#ffd23f" stroke-opacity="0.25" stroke-width="6"/>
+
+  <!-- ombros / camisa -->
+  <path d="M120 640 C130 520 210 470 320 470 C430 470 510 520 520 640 Z" fill="#e8742c"/>
+  <!-- faixas refletivas do colete -->
+  <path d="M215 500 L245 640 L270 640 L240 492 Z" fill="#f4f4f4" opacity="0.9"/>
+  <path d="M425 500 L395 640 L370 640 L400 492 Z" fill="#f4f4f4" opacity="0.9"/>
+  <!-- gola -->
+  <path d="M265 470 L320 530 L375 470 Z" fill="#2b5d8a"/>
+  <!-- lápis no bolso -->
+  <rect x="430" y="545" width="12" height="60" rx="3" fill="#ffd23f" transform="rotate(8 436 575)"/>
+  <rect x="455" y="550" width="10" height="55" rx="3" fill="#d9534f" transform="rotate(-6 460 577)"/>
+
+  <!-- pescoço -->
+  <path d="M280 410 L280 480 Q320 500 360 480 L360 410 Z" fill="#a86d44"/>
+
+  <!-- orelhas -->
+  <ellipse cx="205" cy="335" rx="24" ry="34" fill="#b3764b"/>
+  <ellipse cx="435" cy="335" rx="24" ry="34" fill="#b3764b"/>
+  <!-- lápis atrás da orelha -->
+  <g transform="rotate(-35 440 300)">
+    <rect x="425" y="250" width="14" height="80" rx="2" fill="#ffd23f"/>
+    <polygon points="425,330 439,330 432,348" fill="#f1d3a8"/>
+    <polygon points="429,342 435,342 432,348" fill="#333"/>
+  </g>
+
+  <!-- rosto -->
+  <ellipse cx="320" cy="335" rx="118" ry="132" fill="url(#skin)"/>
+
+  <!-- cabelo grisalho nas laterais -->
+  <path d="M206 300 Q205 255 230 240 L235 300 Z" fill="#b9b9b9"/>
+  <path d="M434 300 Q435 255 410 240 L405 300 Z" fill="#b9b9b9"/>
+
+  <!-- capacete -->
+  <path d="M190 262 C190 160 250 112 320 112 C390 112 450 160 450 262 Z" fill="url(#hat)"/>
+  <path d="M308 116 L332 116 L336 262 L304 262 Z" fill="#ffe27a" opacity="0.7"/>
+  <rect x="168" y="250" width="304" height="30" rx="15" fill="#e09a00"/>
+  <!-- marca no capacete -->
+  <circle cx="320" cy="195" r="30" fill="#0d2a45"/>
+  <text x="320" y="207" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-weight="bold" font-size="34" fill="#ffd23f">T</text>
+
+  <!-- sobrancelhas: a esquerda erguida (desconfiado) -->
+  <path d="M245 300 Q270 278 298 292" stroke="#7a7a7a" stroke-width="10" fill="none" stroke-linecap="round"/>
+  <path d="M345 306 Q372 300 397 308" stroke="#7a7a7a" stroke-width="10" fill="none" stroke-linecap="round"/>
+
+  <!-- olhos -->
+  <ellipse cx="272" cy="328" rx="15" ry="16" fill="#fff"/>
+  <circle cx="275" cy="330" r="9" fill="#3b2a1e"/>
+  <circle cx="278" cy="327" r="3" fill="#fff"/>
+  <path d="M355 330 Q370 322 386 330" stroke="#3b2a1e" stroke-width="6" fill="none" stroke-linecap="round"/>
+
+  <!-- nariz -->
+  <path d="M320 335 Q310 375 318 382 Q330 386 336 378" stroke="#8f5a36" stroke-width="5" fill="none" stroke-linecap="round"/>
+
+  <!-- bigode -->
+  <path d="M268 405 Q295 385 320 398 Q345 385 372 405 Q350 418 320 408 Q290 418 268 405 Z" fill="#8a8a8a"/>
+  <!-- sorriso de canto -->
+  <path d="M292 428 Q322 446 352 424" stroke="#6b3a22" stroke-width="6" fill="none" stroke-linecap="round"/>
+
+  <!-- lupa (ver para crer) -->
+  <g>
+    <line x1="418" y1="380" x2="505" y2="520" stroke="#3a3a3a" stroke-width="22" stroke-linecap="round"/>
+    <line x1="418" y1="380" x2="505" y2="520" stroke="#6b4b2a" stroke-width="14" stroke-linecap="round"/>
+    <!-- mão -->
+    <ellipse cx="492" cy="505" rx="34" ry="26" fill="#b3764b" transform="rotate(40 492 505)"/>
+    <circle cx="376" cy="332" r="58" fill="url(#lens)" stroke="#3a3a3a" stroke-width="14"/>
+    <circle cx="376" cy="332" r="58" fill="none" stroke="#9aa5ad" stroke-width="5"/>
+    <!-- olho ampliado dentro da lupa -->
+    <ellipse cx="376" cy="330" rx="26" ry="27" fill="#fff" opacity="0.95"/>
+    <circle cx="373" cy="332" r="15" fill="#3b2a1e"/>
+    <circle cx="378" cy="326" r="5" fill="#fff"/>
+    <path d="M346 300 Q356 293 366 293" stroke="#ffffff" stroke-width="6" stroke-linecap="round" fill="none" opacity="0.7"/>
+  </g>
+</svg>
