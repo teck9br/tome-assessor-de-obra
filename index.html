@@ -311,7 +311,8 @@ footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; g
   .hero .wrap { grid-template-columns: minmax(0, 1fr); gap: 48px }
   .hero .sub { max-width: 640px }
   .b-rdo { grid-column: span 6; grid-row: auto }
-  .b-orc, .b-conta { grid-column: span 3 }
+  .b-orc, .b-conta, .b-efet, .b-vale { grid-column: span 3 }
+  .b-folha { grid-column: span 6 }
   .dados { grid-template-columns: minmax(0, 1fr); gap: 32px }
 }
 @media (max-width: 720px) {
@@ -342,9 +343,9 @@ footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; g
   .garantias li { padding: 16px 18px }
 }
 @media (max-width: 720px) {
-  /* simulador: painel compacto em cima, chat e botões logo abaixo, tudo numa tela */
+  /* simulador: chat e botões primeiro, painel compacto logo abaixo */
   .sim { gap: 8px; padding: 6px }
-  .painel { order: -1; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 6px }
+  .painel { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 6px }
   .painel h2 { display: none }
   .met { padding: 6px 10px; gap: 0 }
   #m-gastos { grid-column: 1 / -1; display: flex; align-items: baseline; justify-content: space-between; padding: 8px 12px }
@@ -385,6 +386,44 @@ footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; g
   .barra-cta b { color: var(--ink) }
   .barra-cta .btn { min-height: 44px; padding: 10px 18px }
   footer { padding-bottom: calc(96px + env(safe-area-inset-bottom, 0px)) }
+}
+@media (max-width: 720px) {
+  /* ritmo das seções */
+  .sec { padding-block: 56px }
+  .sec.cobranca { padding-top: 0 }
+  .cab { margin-bottom: 28px; gap: 12px }
+  .cab h2, .fecho h2 { font-size: 28px; line-height: 34px; letter-spacing: -0.025em }
+  .cab p, .fecho p { font-size: 16px; line-height: 24px }
+  .troca > div { padding: 20px; gap: 16px }
+  .troca ul { gap: 12px }
+
+  /* RDO de exemplo no carrossel */
+  .b-rdo { gap: 16px }
+  .rdo { padding: 14px }
+  .rdo-t { flex-direction: column; align-items: flex-start; gap: 2px }
+  .rdo-t .dir { text-align: left }
+  .rdo-i { grid-template-columns: repeat(2, minmax(0, 1fr)) }
+  .rdo td, .rdo th { padding: 3px 4px }
+
+  /* passos: número ao lado do texto */
+  .passos { gap: 20px }
+  .passos li { grid-template-columns: 36px minmax(0, 1fr); column-gap: 14px; row-gap: 4px }
+  .passos li::before { grid-row: 1 / span 3; align-self: start }
+  .passos li > * { grid-column: 2 }
+  .passos .cod { margin-top: 4px }
+
+  /* dados, cobrança, dúvidas, fecho */
+  .garantias li { padding: 14px 16px; gap: 14px }
+  .cobra { gap: 20px }
+  .cobra h2 { font-size: 26px; line-height: 32px }
+  .cobra p { font-size: 16px; line-height: 24px; margin-top: 12px }
+  .cobra .btn { width: 100% }
+  .faq summary { padding: 16px 18px; font-size: 16px; line-height: 22px }
+  .faq details p { padding: 0 18px 16px; font-size: 15px; line-height: 22px }
+  .fecho { gap: 16px }
+  .fecho img { width: 56px; height: 56px }
+  .contato .btn { width: 100% }
+  footer .wrap { flex-direction: column; gap: 6px }
 }
 @media (max-width: 380px) {
   .hero h1 { font-size: 33px; line-height: 38px }
