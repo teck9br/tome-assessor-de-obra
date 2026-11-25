@@ -281,7 +281,6 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
 .rdo td { padding: 3px 6px; border-bottom: 1px solid #e8ecf0 }
 .rdo-a { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 18px }
 .rdo-a div { border-top: 1px solid #1d2733; padding-top: 3px; text-align: center; color: #56626f }
-.dica-deslize { display: none }
 .nota { margin-top: 16px; font-size: 13px; line-height: 18px; color: var(--muted) }
 
 /* passos */
@@ -395,12 +394,13 @@ footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; g
   .troca .ativo { display: grid; animation: abre 320ms var(--mola) both }
   .troca > div > h3 { display: none }
 
-  /* blocos em carrossel de deslizar */
-  .bento { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; gap: 12px; margin-inline: calc(-1 * max(20px, env(safe-area-inset-left, 0px))); padding: 4px max(20px, env(safe-area-inset-left, 0px)) 16px; scrollbar-width: none }
-  .bento::-webkit-scrollbar { display: none }
-  .bento > .bloco { flex: 0 0 82%; scroll-snap-align: center; padding: 20px }
-  .b-rdo { flex-basis: 88% }
-  .dica-deslize { display: block }
+  /* blocos empilhados, cada um com a altura do próprio conteúdo */
+  .bento { gap: 12px }
+  .bento > .bloco { padding: 20px; gap: 10px }
+  .b-rdo .inclui { display: none }
+  .b-rdo figure { position: relative; max-height: 280px; overflow: hidden; border-radius: 4px;
+    -webkit-mask-image: linear-gradient(#000 70%, transparent); mask-image: linear-gradient(#000 70%, transparent) }
+  .b-rdo .rdo { box-shadow: 0 0 0 1px rgba(13, 42, 69, 0.08) }
 
   /* barra fixa embaixo, aparece depois do topo e some no contato */
   .barra-cta { display: flex; position: fixed; z-index: 25; left: 0; right: 0; bottom: 0; align-items: center; justify-content: space-between; gap: 12px;
@@ -640,7 +640,7 @@ footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; g
           <p class="desc">Só os responsáveis recebem. Salário nunca aparece no grupo.</p>
         </div>
       </div>
-      <p class="nota">Nomes e valores dos blocos são exemplos.<span class="dica-deslize"> Deslize para o lado para ver todos.</span></p>
+      <p class="nota">Nomes e valores dos blocos são exemplos.</p>
     </div>
   </section>
 
