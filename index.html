@@ -224,12 +224,38 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
 .bloco h3 { font-size: 20px; line-height: 28px; font-weight: 600 }
 .b-rdo { grid-column: span 4; grid-row: span 2; grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr); gap: 28px; align-items: start }
 .b-rdo-txt { display: grid; gap: 12px }
+@media (min-width: 1021px) {
+  .b-rdo { align-items: stretch }
+  .b-rdo-txt { display: flex; flex-direction: column; gap: 12px }
+  .b-rdo-txt .pedido { margin-top: auto }
+  .b-rdo figure { display: flex; align-items: center }
+  .b-rdo .rdo { font-size: 13px; line-height: 19px; padding: 22px }
+  .b-rdo .rdo h4 { margin-top: 12px }
+}
 .b-orc, .b-conta, .b-efet, .b-vale, .b-folha { grid-column: span 2 }
 .peca { border-radius: 8px; background: var(--soft); padding: 10px 12px; font-size: 13px; line-height: 18px; display: grid; gap: 6px }
 .peca .l { display: flex; justify-content: space-between; gap: 8px }
 .peca em { font-style: normal; font-weight: 600 }
 .barra { height: 8px; border-radius: 4px; background: var(--soft-2); overflow: hidden }
-.barra span { display: block; height: 100%; width: 85%; background: var(--amber); border-radius: 4px; transform-origin: left; transition: transform 1100ms var(--mola) 200ms }
+.bloco .desc { font-size: 15px; line-height: 22px; color: var(--text) }
+.etapa { display: grid; gap: 4px }
+.peca small { color: var(--muted); font-size: 12px; margin-left: 4px }
+.peca .total { border-top: 1px solid var(--line); padding-top: 6px; margin-top: 2px; font-weight: 600; color: var(--ink) }
+.chip { font-size: 11px; line-height: 16px; padding: 1px 8px; border-radius: 8px; background: var(--soft-2); color: var(--muted); white-space: nowrap; align-self: center }
+.warn-chip { background: var(--warn-soft); color: var(--warn) }
+.ok-chip { background: var(--ok-soft); color: var(--ok) }
+.anexo { display: flex; align-items: center; gap: 8px; margin-top: 6px; padding: 6px 8px; border-radius: 6px; background: var(--soft); font-size: 12px; line-height: 16px; color: var(--ink) }
+.anexo.pdf span { background: #d63b2f }
+.inclui { list-style: none; margin: 4px 0 0; padding: 0; display: grid; gap: 8px; font-size: 14px; line-height: 20px; color: var(--ink) }
+.inclui li { display: grid; grid-template-columns: 16px minmax(0, 1fr); gap: 8px; align-items: center }
+.inclui li::before { content: ""; width: 14px; height: 8px; border-left: 2px solid var(--ok); border-bottom: 2px solid var(--ok); transform: rotate(-45deg) translate(1px, -2px) }
+.pedido { flex-direction: column; gap: 6px; margin-top: 4px; background: #efeae2 }
+.pedido .eu-msg { align-self: flex-end; background: #d9fdd3; border-radius: 8px; padding: 6px 10px; font-weight: 600; color: #111b21; box-shadow: 0 1px 0.5px rgba(11, 20, 26, 0.13) }
+.pedido .eu-msg small { display: block; font-weight: 500; font-size: 11px; color: #667781 }
+.pedido .tome-msg { display: flex; gap: 8px; align-items: flex-end }
+.pedido .tome-msg .anexo { margin: 0; background: #ffffff; box-shadow: 0 1px 0.5px rgba(11, 20, 26, 0.13) }
+.anexo span { width: 26px; height: 30px; border-radius: 4px; background: #1d7a45; color: #ffffff; font-size: 9px; font-weight: 700; display: grid; place-items: center; flex: none }
+.barra span { display: block; height: 100%; width: calc(var(--p, .85) * 100%); background: var(--amber); border-radius: 4px; transform-origin: left; transition: transform 1100ms var(--mola) 200ms }
 .rv:not(.visto) .barra span { transform: scaleX(0) }
 .aviso { font-size: 13px; line-height: 18px; color: var(--warn); background: var(--warn-soft); padding: 8px 10px; border-radius: 8px }
 .warn { color: var(--warn) }
@@ -537,6 +563,16 @@ footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; g
           <div class="b-rdo-txt">
             <h3>O RDO sai pronto, com o nome da sua construtora</h3>
             <p>Serviços por colaborador, clima, faltas, ocorrências e materiais recebidos viram um relatório numerado, com espaço para as assinaturas. Peça com /rdo e escolha o dia.</p>
+            <ul class="inclui">
+              <li>Efetivo, faltas e horas extras</li>
+              <li>Serviços por colaborador e local</li>
+              <li>Clima, ocorrências e materiais</li>
+              <li>Numeração e campos de assinatura</li>
+            </ul>
+            <div class="privado pedido">
+              <div class="eu-msg">/rdo 24/11<small>Eng. Carla</small></div>
+              <div class="tome-msg"><img src="tome.svg" alt="" width="24" height="24"><span class="anexo pdf"><span>PDF</span>RDO nº 23, 24/11/2026.pdf</span></div>
+            </div>
           </div>
           <figure style="margin:0">
             <div class="rdo">
@@ -544,45 +580,64 @@ footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; g
               <div class="rdo-i"><div><span>Data</span>24/11/2026</div><div><span>Clima</span>Sol</div><div><span>Efetivo</span>7</div><div><span>Faltas</span>1</div></div>
               <h4>Serviços executados</h4>
               <table><thead><tr><th>Colaborador</th><th>Serviço</th><th>Local</th></tr></thead>
-                <tbody><tr><td>Antônio</td><td>Alvenaria de vedação</td><td>Bloco B</td></tr><tr><td>Raimundo</td><td>Chapisco</td><td>Fachada leste</td></tr><tr><td>Cícero</td><td>Forma de pilar</td><td>Bloco C</td></tr></tbody></table>
+                <tbody><tr><td>Antônio</td><td>Alvenaria de vedação</td><td>Bloco B</td></tr><tr><td>Raimundo</td><td>Chapisco</td><td>Fachada leste</td></tr><tr><td>Cícero</td><td>Forma de pilar</td><td>Bloco C</td></tr><tr><td>Francisco</td><td>Contrapiso</td><td>Bloco A, térreo</td></tr><tr><td>Edvaldo</td><td>Instalação elétrica</td><td>Bloco B</td></tr></tbody></table>
+              <h4>Faltas e horas extras</h4>
+              <table><tbody><tr><td>Josué</td><td>Falta justificada (atestado)</td></tr><tr><td>Cícero</td><td>2h extras a 50%</td></tr></tbody></table>
+              <h4>Ocorrências</h4>
+              <table><tbody><tr><td>Entrega de areia atrasou 2h; reboco remanejado para a tarde.</td></tr></tbody></table>
+              <h4>Materiais recebidos</h4>
+              <table><tbody><tr><td>12 sc cimento CP II, Casa do Construtor</td></tr><tr><td>6 m³ de areia média</td></tr></tbody></table>
               <div class="rdo-a"><div>Encarregado</div><div>Engenheiro</div></div>
             </div>
           </figure>
         </div>
         <div class="bloco b-orc">
           <h3>Orçamento por etapa, antes de estourar</h3>
+          <p class="desc">Cadastre o previsto de cada etapa. Cada compra lançada soma no realizado.</p>
           <div class="peca">
-            <div class="l"><span>Alvenaria</span><span class="num">R$ 42.500 de R$ 50.000</span></div>
-            <div class="barra" aria-hidden="true"><span></span></div>
+            <div class="etapa"><div class="l"><span>Fundação</span><span class="num">R$ 38.200 / 40.000</span></div><div class="barra" aria-hidden="true"><span style="--p:.955"></span></div></div>
+            <div class="etapa"><div class="l"><span>Estrutura</span><span class="num">R$ 61.300 / 90.000</span></div><div class="barra" aria-hidden="true"><span style="--p:.681"></span></div></div>
+            <div class="etapa"><div class="l"><span>Alvenaria</span><span class="num">R$ 42.500 / 50.000</span></div><div class="barra" aria-hidden="true"><span style="--p:.85"></span></div></div>
           </div>
-          <p class="aviso">A etapa alvenaria chegou a 85% do previsto.</p>
+          <p class="aviso">Tomé: a etapa alvenaria chegou a 85% do previsto.</p>
         </div>
         <div class="bloco b-conta">
           <h3>Boleto não vence esquecido</h3>
+          <p class="desc">Boleto com vencimento vira lembrete. Chegou o comprovante, ele dá baixa.</p>
           <div class="peca">
-            <div class="l"><span>#0039 Aço Forte</span><em class="warn">vence amanhã</em></div>
-            <div class="l"><span>#0040 Locadora</span><span>em 5 dias</span></div>
+            <div class="l"><span>#0039 Aço Forte <small class="num">R$ 1.240,00</small></span><em class="chip warn-chip">vence amanhã</em></div>
+            <div class="l"><span>#0040 Locadora <small class="num">R$ 860,00</small></span><em class="chip">em 5 dias</em></div>
+            <div class="l"><span>#0036 Elétrica Sol <small class="num">R$ 412,90</small></span><em class="chip ok-chip">paga</em></div>
           </div>
+          <div class="privado"><img src="tome.svg" alt="" width="24" height="24"><div>Lembrete: #0039 Aço Forte vence amanhã. Quando pagar, mande o comprovante aqui.</div></div>
         </div>
         <div class="bloco b-efet">
           <h3>Efetivo e quentinhas do dia</h3>
+          <p class="desc">O encarregado manda a lista. O Tomé conta, anota as faltas e calcula o almoço.</p>
           <div class="peca">
             <div class="l"><span>7 presentes, 1 falta</span><em>7 quentinhas</em></div>
             <div class="nomes"><span>Antônio</span><span>Francisco</span><span>Raimundo</span><span>Wellington</span><span>Cícero</span><span>Edvaldo</span><span>Luan</span><span class="falta">Josué</span></div>
+            <div class="l"><span>Hora extra, Cícero</span><em class="num">2h a 50%</em></div>
+            <div class="l"><span>Falta justificada, Josué</span><em>atestado</em></div>
           </div>
         </div>
         <div class="bloco b-vale">
           <h3>Vales anotados na hora</h3>
+          <p class="desc">Vale, adiantamento e desconto de cada colaborador, com data e motivo.</p>
           <div class="peca">
-            <div class="l"><span>Vale, Raimundo</span><em class="num">R$ 150,00</em></div>
-            <div class="l"><span>Desconto, Luan</span><em class="num">R$ 40,00</em></div>
+            <div class="l"><span>18/11 Vale, Raimundo</span><em class="num">R$ 150,00</em></div>
+            <div class="l"><span>20/11 Adiantamento, Antônio</span><em class="num">R$ 300,00</em></div>
+            <div class="l"><span>24/11 Desconto, Luan</span><em class="num">R$ 40,00</em></div>
+            <div class="l"><span>25/11 Vale, Cícero</span><em class="num">R$ 100,00</em></div>
+            <div class="l total"><span>Total da quinzena</span><em class="num">R$ 590,00</em></div>
           </div>
-          <p>Entram na apuração da quinzena.</p>
+          <p class="desc">Cada vale já entra descontado na apuração da folha.</p>
         </div>
         <div class="bloco b-folha">
           <h3>A folha vai só no privado</h3>
-          <div class="privado"><img src="tome.svg" alt="" width="24" height="24"><div>Folha da 2ª quinzena de novembro anexada. Só você recebeu.</div></div>
-          <p>Salário nunca aparece no grupo.</p>
+          <p class="desc">Dias trabalhados, faltas, extras e vales viram a apuração da quinzena.</p>
+          <div class="privado"><img src="tome.svg" alt="" width="24" height="24"><div>Folha da 2ª quinzena de novembro: 8 colaboradores, 2 com hora extra.<span class="anexo"><span>XLS</span>Folha 16 a 30-11.xlsx</span></div></div>
+          <p class="desc">Só os responsáveis recebem. Salário nunca aparece no grupo.</p>
         </div>
       </div>
       <p class="nota">Nomes e valores dos blocos são exemplos.<span class="dica-deslize"> Deslize para o lado para ver todos.</span></p>
